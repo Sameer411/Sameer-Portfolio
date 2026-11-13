@@ -1076,6 +1076,10 @@ main {
 
 .blog-post-item > a:hover .blog-banner-box img { transform: scale(1.1); }
 
+/* show wide logos in full instead of cropping them */
+.blog-banner-box.logo-fit img { object-fit: contain; padding: 0 12px; }
+.blog-post-item > a:hover .blog-banner-box.logo-fit img { transform: none; }
+
 .blog-content { padding: 15px; }
 
 .blog-meta {
