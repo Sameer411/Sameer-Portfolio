@@ -15,8 +15,12 @@ $("[data-theme-toggle]").addEventListener("click", () => {
 
 /* Mobile menu */
 const nav = $("[data-nav]");
-$("[data-menu]").addEventListener("click", () => nav.classList.toggle("open"));
-nav.addEventListener("click", e => { if (e.target.closest("a")) nav.classList.remove("open"); });
+const menuBtn = $("[data-menu]");
+const setMenu = open => { nav.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", open); };
+menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+nav.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("click", e => { if (!e.target.closest(".nav")) setMenu(false); });
+addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
 
 /* Scroll progress */
 const bar = $("[data-progress]");
